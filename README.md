@@ -29,13 +29,20 @@ for the raw usage payload.
 
 ## Install
 
-### In the app (recommended — no browser needed)
+### One-line: paste into the Hermes input box
 
-Inside the Hermes **desktop app**:
+Copy the whole block below and **paste it into the Hermes desktop chat input**,
+then send it. Hermes (the agent) installs the plugin for you automatically:
 
-1. Open **Settings → Plugins**
-2. Click **Install from Git**
-3. Paste this into the repo field and confirm:
+```
+Please install the desktop plugin dsh-stats-line for me: run git clone https://github.com/qq1131909103/dsh-stats-line into <your hermes home>/desktop-plugins/dsh-stats-line (create the folder first if missing — the file must end up at desktop-plugins/dsh-stats-line/plugin.js). When done, tell me to press Ctrl+K > Reload desktop plugins.
+```
+
+Then press `Ctrl+K` → **Reload desktop plugins** (the agent will remind you).
+
+### Alternative: Settings → Install from Git
+
+**Settings → Plugins → Install from Git**, paste into the repo field:
 
 ```
 qq1131909103/dsh-stats-line
@@ -105,13 +112,20 @@ MIT
 
 ## 安装
 
-### 在软件里安装（推荐，不需要浏览器）
+### 一键：粘贴到 Hermes 输入框
 
-在 Hermes **桌面端软件里**操作：
+复制下面整段文字，**粘贴到 Hermes 桌面端的聊天输入框**，直接发送。
+Hermes（智能体）会自动帮你装好这个插件：
 
-1. 打开 **设置 → 插件**
-2. 点 **从 Git 安装**
-3. 在仓库输入框粘贴下面的内容并确认：
+```
+请帮我安装桌面插件 dsh-stats-line：运行 git clone https://github.com/qq1131909103/dsh-stats-line 到 <你的 Hermes 主目录>/desktop-plugins/dsh-stats-line（目录不存在就先创建，最终文件必须是 desktop-plugins/dsh-stats-line/plugin.js）。装完后提醒我按 Ctrl+K 重新加载桌面插件。
+```
+
+然后按 `Ctrl+K` → **重新加载桌面插件**（智能体装完会提醒你）。
+
+### 备选：设置 → 从 Git 安装
+
+**设置 → 插件 → 从 Git 安装**，在仓库输入框粘贴：
 
 ```
 qq1131909103/dsh-stats-line
