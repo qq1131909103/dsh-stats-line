@@ -29,6 +29,22 @@ for the raw usage payload.
 
 ## Install
 
+### One-click install (copy the link)
+
+Hermes Desktop registers the `hermes://` URL scheme. With the desktop app
+running, click the link below — or copy it and paste it into your browser's
+address bar:
+
+```
+hermes://plugin/install?repo=qq1131909103/dsh-stats-line&enable=1
+```
+
+Hermes opens a confirmation dialog and detects this repo as a **desktop
+plugin** — confirm and it installs into `desktop-plugins/dsh-stats-line/`.
+(Deep links never auto-install; the dialog always asks first.)
+
+### Manual / by code
+
 The whole plugin is **one file** — `plugin.js` in this repo's root. Grab it any
 way you like: **Code → Download ZIP**, `git clone
 https://github.com/qq1131909103/dsh-stats-line.git`, or open `plugin.js` on
@@ -87,6 +103,20 @@ MIT
 - 鼠标悬停显示提示，点击可查看原始用量数据。
 
 ## 安装
+
+### 一键安装（复制链接）
+
+Hermes 桌面端注册了 `hermes://` 协议。先启动桌面端，然后**点击下面的链接**，
+或复制它粘贴到浏览器地址栏回车：
+
+```
+hermes://plugin/install?repo=qq1131909103/dsh-stats-line&enable=1
+```
+
+Hermes 会弹出确认框，自动识别本仓库为**桌面插件**——确认后即装入
+`desktop-plugins/dsh-stats-line/`。（深链不会自动安装，一定会先弹确认框。）
+
+### 手动安装 / 直接要代码
 
 整个插件就**一个文件**——本仓库根目录的 `plugin.js`。任选方式拿到它：
 **Code → Download ZIP**（下载压缩包）、`git clone
