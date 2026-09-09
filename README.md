@@ -29,19 +29,20 @@ for the raw usage payload.
 
 ## Install
 
-### One-click install (copy the link)
+### In the app (recommended — no browser needed)
 
-Hermes Desktop registers the `hermes://` URL scheme. With the desktop app
-running, click the link below — or copy it and paste it into your browser's
-address bar:
+Inside the Hermes **desktop app**:
+
+1. Open **Settings → Plugins**
+2. Click **Install from Git**
+3. Paste this into the repo field and confirm:
 
 ```
-hermes://plugin/install?repo=qq1131909103/dsh-stats-line&enable=1
+qq1131909103/dsh-stats-line
 ```
 
-Hermes opens a confirmation dialog and detects this repo as a **desktop
-plugin** — confirm and it installs into `desktop-plugins/dsh-stats-line/`.
-(Deep links never auto-install; the dialog always asks first.)
+Hermes detects this repo as a **desktop plugin**, shows a confirmation dialog,
+and installs it into `desktop-plugins/dsh-stats-line/`.
 
 ### Manual / by code
 
@@ -104,17 +105,20 @@ MIT
 
 ## 安装
 
-### 一键安装（复制链接）
+### 在软件里安装（推荐，不需要浏览器）
 
-Hermes 桌面端注册了 `hermes://` 协议。先启动桌面端，然后**点击下面的链接**，
-或复制它粘贴到浏览器地址栏回车：
+在 Hermes **桌面端软件里**操作：
+
+1. 打开 **设置 → 插件**
+2. 点 **从 Git 安装**
+3. 在仓库输入框粘贴下面的内容并确认：
 
 ```
-hermes://plugin/install?repo=qq1131909103/dsh-stats-line&enable=1
+qq1131909103/dsh-stats-line
 ```
 
-Hermes 会弹出确认框，自动识别本仓库为**桌面插件**——确认后即装入
-`desktop-plugins/dsh-stats-line/`。（深链不会自动安装，一定会先弹确认框。）
+Hermes 会自动识别本仓库为**桌面插件**，弹出确认框，装进
+`desktop-plugins/dsh-stats-line/`。
 
 ### 手动安装 / 直接要代码
 
