@@ -1,6 +1,6 @@
 /**
- * 同款统计行插件 (仿 DSH Desktop 底部小字) —— 状态栏芯片版
- * 位置: 窗口最底部状态栏右侧, 和审批模式(审批)那一行并排
+ * 同款统计行插件 (仿 DSH Desktop 底部小字) —— 状态栏居中版
+ * 位置: 窗口最底部状态栏正中间 (fixed 定位贴住状态栏, 不挤原生项)
  * 路径: <Hermes主目录>/desktop-plugins/dsh-stats-line/plugin.js (文件夹名必须等于 id)
  * 加载: 桌面端按 Ctrl+K -> 重新加载桌面插件 (Reload desktop plugins)
  * 说明: 纯界面脚本 (未编译的原生模块), 只能导入 @hermes/plugin-sdk / react / react/jsx-runtime
@@ -118,23 +118,57 @@ function StatsText() {
   return jsx('span', { className: 'tabular-nums', children: groups.join(' | ') })
 }
 
-// 中文解释: 状态栏右侧小字 (和审批模式同一行), 鼠标悬停 500ms 出完整提示, 点击看原始用量
+// 中文解释: 状态栏居中统计行。Hermes 状态栏只有 left/right 两组(flex justify-between),
+// 没有中间区, 所以用 fixed 定位 + ResizeObserver 动态贴到窗口底部中央:
+// - 整行铺在状态栏高度内, 文字水平居中, 视觉上就是"状态栏中间那一行"
+// - 外圈 pointer-events:none 穿透, 不挡审批模式/模型等原生项; 只有文字本身可点可悬停
 function StatsChip() {
   const t = usePluginI18n(ID)
+  const barRef = useRef(null)
 
-  return jsx(Tip, {
-    label: t('full'),
-    side: 'top',
-    children: jsx('button', {
-      className:
-        'inline-flex h-full max-w-[560px] items-center gap-1 overflow-hidden px-1.5 text-[0.6875rem] whitespace-nowrap text-ellipsis text-(--ui-text-tertiary) hover:bg-(--chrome-action-hover) hover:text-foreground',
-      type: 'button',
-      onClick: () => {
-        haptic('tap')
-        const u = host.state.focusedUsage.get()
-        host.notify({ kind: 'info', message: t('clicked', u ? JSON.stringify(u).slice(0, 300) : t('noData')) })
-      },
-      children: jsx(StatsText, {})
+  useEffect(() => {
+    const el = barRef.current
+    if (!el) return
+
+    const place = () => {
+      // 状态栏 footer: data-slot="statusbar"
+      const bar = document.querySelector('[data-slot="statusbar"]')
+      if (!bar) return
+      const r = bar.getBoundingClientRect()
+      // 垂直居中于状态栏, 水平居中于窗口
+      el.style.top = `${r.top + (r.height - el.offsetHeight) / 2}px`
+      el.style.left = '50%'
+      el.style.transform = 'translateX(-50%)'
+    }
+
+    place()
+    // 窗口尺寸/布局变化时重新贴位
+    const ro = new ResizeObserver(place)
+    ro.observe(document.documentElement)
+    window.addEventListener('resize', place)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', place)
+    }
+  }, [])
+
+  return jsx('div', {
+    ref: barRef,
+    className: 'fixed z-50 flex h-5 items-center justify-center overflow-hidden pointer-events-none',
+    children: jsx(Tip, {
+      label: t('full'),
+      side: 'top',
+      children: jsx('button', {
+        className:
+          'pointer-events-auto inline-flex max-w-[46vw] items-center overflow-hidden px-2 text-[0.6875rem] leading-5 whitespace-nowrap text-ellipsis text-(--ui-text-tertiary) hover:bg-(--chrome-action-hover) hover:text-foreground',
+        type: 'button',
+        onClick: () => {
+          haptic('tap')
+          const u = host.state.focusedUsage.get()
+          host.notify({ kind: 'info', message: t('clicked', u ? JSON.stringify(u).slice(0, 300) : t('noData')) })
+        },
+        children: jsx(StatsText, {})
+      })
     })
   })
 }
